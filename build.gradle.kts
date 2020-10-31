@@ -86,6 +86,11 @@ publishing {
             val releaseUrl = "https://maven.siro256.dev/repository/maven-releases/"
             val snapshotUrl = "https://maven.siro256.dev/repository/maven-snapshots/"
             url = uri(if (version.toString().endsWith("SNAPSHOT", true)) snapshotUrl else releaseUrl)
+
+            credentials {
+                username = System.getProperty("username")
+                password = System.getProperty("password")
+            }
         }
     }
 }
