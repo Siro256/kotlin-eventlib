@@ -12,7 +12,7 @@ description = "A event library for Kotlin(JVM language)"
 val projectLocation = "github.com/Sirrrrrro/kotlin-eventlib"
 
 repositories {
-    mavenCentral()
+    maven { url = uri("https://maven.siro256.dev/repository/maven-public/") }
 }
 
 dependencies {
