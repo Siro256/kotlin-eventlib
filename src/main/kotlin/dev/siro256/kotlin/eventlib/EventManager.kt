@@ -5,13 +5,27 @@ import kotlin.reflect.KType
 import kotlin.reflect.full.createType
 import kotlin.reflect.full.isSubtypeOf
 
+/**
+ * ハンドラの登録/解除やイベントの発火を担当するクラス
+ */
+
 object EventManager {
     private val handlers = hashMapOf<KCallable<*>, Pair<KType, Any>>()
+
+    /**
+     * イベントハンドラを登録する
+     * @param clazz [EventHandler]アノテーションを付けた関数があるクラス
+     */
 
     fun registerHandler(clazz: Any) {
         val eventHandler = getEventHandler(clazz) ?: return
         handlers.putAll(eventHandler)
     }
+
+    /**
+     * イベントハンドラの登録を解除する
+     * @param clazz [EventHandler]アノテーションをつけた関数があるクラス
+     */
 
     fun unregisterHandler(clazz: Any) {
         val eventHandler = getEventHandler(clazz) ?: return
@@ -20,9 +34,19 @@ object EventManager {
         }
     }
 
+    /**
+     * イベントハンドラの登録を解除する
+     * @param kcallable [EventHandler]アノテーションをつけた関数
+     */
+
     fun unregisterHandler(kcallable: KCallable<*>) {
         handlers.remove(kcallable)
     }
+
+    /**
+     * イベントを発火する
+     * @param event [Event]クラスを継承したクラス
+     */
 
     fun callEvent(event: Event) {
         val ktype = event::class.createType()

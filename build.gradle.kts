@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.4.10"
+    id("org.jetbrains.dokka") version "1.4.10.2"
     `maven-publish`
     signing
 }
@@ -18,6 +19,8 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.10")
+    dokkaJavadocPlugin("org.jetbrains.dokka:javadoc-plugin:1.4.10.2")
+    dokkaHtmlPlugin("org.jetbrains.dokka:dokka-base:1.4.10.2")
 }
 
 tasks{
@@ -34,9 +37,24 @@ tasks{
         from(projectDir) { include("LICENSE") }
     }
 
+    dokkaJavadoc {
+        outputDirectory.set(buildDir.resolve("dokkaJavadoc"))
+    }
+
+    dokkaHtml {
+        outputDirectory.set(buildDir.resolve("dokkaHtml"))
+    }
+
     val sourcesJar by creating(Jar::class) {
         archiveClassifier.set("sources")
         from(sourceSets["main"].allSource)
+    }
+
+    val javadocJar by creating(Jar::class) {
+        dependsOn(dokkaJavadoc)
+        dependsOn(dokkaHtml)
+        archiveClassifier.set("javadoc")
+        from(buildDir.resolve("dokkaJavadoc"))
     }
 }
 
@@ -49,6 +67,7 @@ publishing {
 
             from(components["java"])
             artifact(tasks["sourcesJar"])
+            artifact(tasks["javadocJar"])
 
             pom {
                 name.set(rootProject.name)
