@@ -23,6 +23,10 @@ dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:dokka-base:1.4.10.2")
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+}
+
 tasks{
     withType<JavaCompile> {
         options.encoding = "UTF-8"
