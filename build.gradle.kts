@@ -75,8 +75,8 @@ publishing {
 
             pom {
                 name.set(rootProject.name)
-                description.set("AAAAAAAA")
                 url.set("https://$projectLocation")
+                description.set(rootProject.description)
 
                 licenses {
                     license {
