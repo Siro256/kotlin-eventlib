@@ -10,7 +10,7 @@ plugins {
 group = "dev.siro256"
 version = "1.0.0-SNAPSHOT"
 description = "A event library for Kotlin(JVM language)"
-val projectLocation = "github.com/Sirrrrrro/kotlin-eventlib"
+val projectLocation = "Sirrrrrro/kotlin-eventlib"
 
 repositories {
     maven { url = uri("https://maven.siro256.dev/repository/maven-public/") }
@@ -75,8 +75,8 @@ publishing {
 
             pom {
                 name.set(rootProject.name)
-                url.set("https://$projectLocation")
                 description.set(rootProject.description)
+                url.set("https://github.com/$projectLocation")
 
                 licenses {
                     license {
@@ -95,9 +95,9 @@ publishing {
                 }
 
                 scm {
-                    connection.set("scm:git:git://$projectLocation.git")
-                    developerConnection.set("scm:git:ssh://$projectLocation.git")
-                    url.set("https://$projectLocation")
+                    connection.set("scm:git:git://github.com/$projectLocation.git")
+                    developerConnection.set("scm:git:ssh://github.com/$projectLocation.git")
+                    url.set("https://github.com/$projectLocation")
                 }
             }
         }
