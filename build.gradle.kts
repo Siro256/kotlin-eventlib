@@ -107,8 +107,8 @@ publishing {
         maven {
             url = uri(
                 if (version.toString().endsWith("SNAPSHOT", true))
-                "https://maven.siro256.dev/repository/maven-releases/" else
-                "https://maven.siro256.dev/repository/maven-snapshots/"
+                "https://maven.siro256.dev/repository/maven-snapshots/" else
+                "https://maven.siro256.dev/repository/maven-releases/"
             )
 
             credentials {
