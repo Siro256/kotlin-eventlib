@@ -1,3 +1,4 @@
+import java.net.URL
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -43,10 +44,36 @@ tasks{
 
     dokkaJavadoc {
         outputDirectory.set(buildDir.resolve("dokkaJavadoc"))
+        dokkaSourceSets.configureEach {
+            includeNonPublic.set(true)
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+                remoteUrl.set(URL(
+                    if (version.toString().endsWith("SNAPSHOT", true))
+                        "https://github.com/$projectLocation/blob/develop/src/main/kotlin/" else
+                        "https://github.com/$projectLocation/blob/master/src/main/kotlin/"
+                )
+                )
+                remoteLineSuffix.set("#L")
+            }
+        }
     }
 
     dokkaHtml {
         outputDirectory.set(buildDir.resolve("dokkaHtml"))
+        dokkaSourceSets.configureEach {
+            includeNonPublic.set(true)
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+                remoteUrl.set(URL(
+                    if (version.toString().endsWith("SNAPSHOT", true))
+                        "https://github.com/$projectLocation/blob/develop/src/main/kotlin/" else
+                        "https://github.com/$projectLocation/blob/master/src/main/kotlin/"
+                )
+                )
+                remoteLineSuffix.set("#L")
+            }
+        }
     }
 
     val sourcesJar by creating(Jar::class) {
