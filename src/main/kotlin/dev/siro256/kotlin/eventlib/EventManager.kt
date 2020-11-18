@@ -7,11 +7,17 @@ import kotlin.reflect.full.isSubtypeOf
 
 /**
  * ハンドラの登録/解除やイベントの発火を担当するクラス
+ *
+ * @author Siro_256
+ * @since 1.0.0
  */
 
 object EventManager {
     /**
      * イベントハンドラの保持用変数
+     *
+     * @author Siro_256
+     * @since 1.0.0
      */
 
     private val handlers = hashMapOf<KCallable<*>, Pair<KType, Any>>()
@@ -19,6 +25,9 @@ object EventManager {
     /**
      * イベントハンドラを登録する
      * @param clazz [EventHandler]アノテーションを付けた関数があるクラス
+     *
+     * @author Siro_256
+     * @since 1.0.0
      */
 
     fun registerHandler(clazz: Any) {
@@ -29,6 +38,9 @@ object EventManager {
     /**
      * イベントハンドラの登録を解除する
      * @param clazz [EventHandler]アノテーションをつけた関数があるクラス
+     *
+     * @author Siro_256
+     * @since 1.0.0
      */
 
     fun unregisterHandler(clazz: Any) {
@@ -41,6 +53,9 @@ object EventManager {
     /**
      * イベントハンドラの登録を解除する
      * @param kcallable [EventHandler]アノテーションをつけた関数
+     *
+     * @author Siro_256
+     * @since 1.0.0
      */
 
     fun unregisterHandler(kcallable: KCallable<*>) {
@@ -50,6 +65,9 @@ object EventManager {
     /**
      * イベントを発火する
      * @param event [Event]クラスを継承したクラス
+     *
+     * @author Siro_256
+     * @since 1.0.0
      */
 
     fun callEvent(event: Event) {
@@ -65,6 +83,9 @@ object EventManager {
      * [EventHandler]アノテーションがついている関数を返却する
      * @param clazz 探索対象のクラス
      * @return Keyが関数、ValueがKTypeと引数のクラスになっているMap
+     *
+     * @autor Siro_256
+     * @since 1.0.0
      */
 
     private fun getEventHandler(clazz: Any): Map<KCallable<*>, Pair<KType, Any>>? {
