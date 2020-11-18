@@ -10,6 +10,10 @@ import kotlin.reflect.full.isSubtypeOf
  */
 
 object EventManager {
+    /**
+     * イベントハンドラの保持用変数
+     */
+
     private val handlers = hashMapOf<KCallable<*>, Pair<KType, Any>>()
 
     /**
@@ -55,6 +59,13 @@ object EventManager {
             callable.call(evt.second, event)
         }
     }
+
+    /**
+     * 引数のクラスの中を探索して、
+     * [EventHandler]アノテーションがついている関数を返却する
+     * @param clazz 探索対象のクラス
+     * @return Keyが関数、ValueがKTypeと引数のクラスになっているMap
+     */
 
     private fun getEventHandler(clazz: Any): Map<KCallable<*>, Pair<KType, Any>>? {
         val map = mutableMapOf<KCallable<*>, Pair<KType, Any>>()
