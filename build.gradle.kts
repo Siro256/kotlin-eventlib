@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "dev.siro256"
-version = "1.0.0-SNAPSHOT"
+version = "1.0.0"
 description = "A event library for Kotlin(JVM language)"
 val projectLocation = "Sirrrrrro/kotlin-eventlib"
 
