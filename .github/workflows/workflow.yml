@@ -10,7 +10,6 @@ on:
 
 jobs:
   build:
-    if: github.event_name == 'push'
     name: "Build project"
     runs-on: self-hosted
     steps:
